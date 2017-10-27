@@ -7,7 +7,8 @@ readme = "README.md"
 license = "Apache-2.0"
 
 [dependencies]
-exonum = "0.2.0"
+exonum = { git = "https://github.com/aleksuss/exonum", branch = "rocksdb-fork-cf" }
+
 iron = "0.5.1"
 bodyparser = "0.7.0"
 router = "0.5.1"
