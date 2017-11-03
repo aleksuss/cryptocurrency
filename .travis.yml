@@ -12,6 +12,7 @@ sudo: false
 dist: trusty
 addons:
   apt:
+    packages:
     - jq
 env:
   global:
