@@ -8,18 +8,10 @@ compiler:
   - gcc
   - clang
 cache: cargo
-sudo: required
+sudo: false
 dist: trusty
 addons:
   apt:
-    sources:
-    - sourceline: 'ppa:chris-lea/libsodium'
-    packages:
-    - gcc
-    - g++
-    - make
-    - libsodium-dev
-    - libssl-dev
     - jq
 env:
   global:
@@ -32,8 +24,8 @@ before_install:
 - rustup toolchain install $NIGHTLY_RUST
 - cargo +$NIGHTLY_RUST clippy --version | grep $CLIPPY_VERS || cargo +$NIGHTLY_RUST
   install clippy --force --vers $CLIPPY_VERS
-- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update          ; fi
-- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install make openssl leveldb libsodium jq; fi
+- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update; fi
+- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install jq; fi
 script:
 - cargo fmt -- --write-mode=diff
 - cargo +$NIGHTLY_RUST clippy -- -D warnings
